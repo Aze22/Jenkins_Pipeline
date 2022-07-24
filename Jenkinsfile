@@ -9,7 +9,7 @@ pipeline {
       }
     }
 
-    stage('Win [DEBUG]') {
+    stage('Windows') {
       parallel {
         stage('Win [DEBUG]') {
           agent any
