@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'Aze'
+    }
+
+  }
   stages {
     stage('Start Server') {
       agent any
