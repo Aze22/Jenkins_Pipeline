@@ -1,6 +1,13 @@
 pipeline {
   agent any
   stages {
+     stage('Start Server') {
+      agent any
+      steps {
+        build(job: 'Startup_Server', wait: true)
+        sleep 60
+      }
+    }
     stage('Xbox | Debug') {
       parallel {
         stage('Xbox | Demo') {
