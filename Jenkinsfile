@@ -1,54 +1,44 @@
 pipeline {
-  agent {
-    node {
-      label 'Aze'
-    }
-
-  }
+  agent any
   stages {
-    stage('Start Server') {
-      agent any
-      steps {
-        build(job: 'Startup_Server', wait: true)
-        sleep 60
-      }
-    }
-
-    stage('Windows') {
+    stage('Xbox') {
       parallel {
-        stage('Win [DEBUG]') {
-          agent any
+        stage('Xbox | Demo') {
+          agent {
+            node {
+              label 'Aze'
+            }
+
+          }
           steps {
-            build(job: 'Fractal_Space_x64_PreAlpha_Debug', wait: true)
+            build(job: 'Fractal_Space_Xbox', wait: true)
           }
         }
 
-        stage('Win [TEST]') {
-          agent any
+        stage('Series X | Demo') {
+          agent {
+            node {
+              label 'Aze'
+            }
+
+          }
           steps {
-            build(job: 'Fractal_Space_x64_PreAlpha_Test', wait: true)
+            build(job: 'Fractal_Space_Scarlett', wait: true)
           }
         }
 
-        stage('Win | Demo [DEBUG]') {
-          agent any
+        stage('Store | Demo') {
+          agent {
+            node {
+              label 'Aze'
+            }
+
+          }
           steps {
-            build(job: 'Fractal_Space_x64', wait: true)
+            build(job: 'Fractal_Space_GDK_Release', wait: true)
           }
         }
 
-      }
-    }
-
-    stage('Shutdown') {
-      agent {
-        node {
-          label 'Aze'
-        }
-
-      }
-      steps {
-        build 'Shutdown_Server'
       }
     }
 
