@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Xbox') {
+    stage('Xbox | Debug') {
       parallel {
         stage('Xbox | Demo') {
           agent {
@@ -11,7 +11,7 @@ pipeline {
 
           }
           steps {
-            build(job: 'Fractal_Space_Xbox', wait: true)
+            build(job: 'Fractal_Space_Xbox_Debug', wait: true)
           }
         }
 
@@ -23,7 +23,7 @@ pipeline {
 
           }
           steps {
-            build(job: 'Fractal_Space_Scarlett', wait: true)
+            build(job: 'Fractal_Space_Scarlett_Debug', wait: true)
           }
         }
 
@@ -35,7 +35,7 @@ pipeline {
 
           }
           steps {
-            build(job: 'Fractal_Space_GDK_Release', wait: true)
+            build(job: 'Fractal_Space_GDK_Debug', wait: true)
           }
         }
 
