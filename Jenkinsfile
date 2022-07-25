@@ -14,7 +14,7 @@ pipeline {
       }
     }
 
-    stage('Windows') {
+    stage('Windows | Debug') {
       parallel {
         stage('Win [DEBUG]') {
           agent any
@@ -37,18 +37,6 @@ pipeline {
           }
         }
 
-      }
-    }
-
-    stage('Shutdown') {
-      agent {
-        node {
-          label 'Aze'
-        }
-
-      }
-      steps {
-        build 'Shutdown_Server'
       }
     }
 
